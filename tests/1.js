@@ -1,6 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 
-fixture('Vanilla RTCPeerConnection')
+fixture('Vanilla P2P:Media')
   .page('http://localhost:8080/1/');
 
 const callBtn = Selector('#tc-call');

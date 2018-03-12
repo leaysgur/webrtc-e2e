@@ -20,7 +20,7 @@ peer2.on('call', conn => {
   });
 });
 
-window.shared.renderCanvas($('canvas').get(0));
+Util.renderCanvas($('canvas').get(0));
 $('button').eq(0).on('click', call);
 
 function call() {

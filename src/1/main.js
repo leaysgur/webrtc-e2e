@@ -8,7 +8,7 @@ pc2.addEventListener('track', ev => {
   $('video').get(0).srcObject = ev.streams[0];
 }, { once: true });
 
-window.shared.renderCanvas($('canvas').get(0));
+Util.renderCanvas($('canvas').get(0));
 $('button').eq(0).on('click', call);
 
 async function call() {

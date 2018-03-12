@@ -1,4 +1,4 @@
-window.shared = {
+window.Util = {
   renderCanvas(canvas) {
     const ctx = canvas.getContext('2d');
 

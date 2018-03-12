@@ -41,5 +41,7 @@ module.exports = {
     $: true,
     // skyway-js-sdk(by cdn)
     Peer: true,
+    // ./src/shared/util.js
+    Util: true,
   }
 };

@@ -1,4 +1,3 @@
-/* global fixture, test */
 import { Selector } from 'testcafe';
 
 fixture('SkyWay P2P')

@@ -1,4 +1,3 @@
-/* global $, Peer */
 const randId = Date.now();
 const peer1 = new Peer({
   key: window.__SKYWAY_KEY__,

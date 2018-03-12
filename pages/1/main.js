@@ -1,4 +1,3 @@
-/* global $ */
 const pc1 = new RTCPeerConnection();
 const pc2 = new RTCPeerConnection();
 

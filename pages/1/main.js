@@ -5,14 +5,12 @@ pc1.onicecandidate = ev => ev.candidate && pc2.addIceCandidate(ev.candidate);
 pc2.onicecandidate = ev => ev.candidate && pc1.addIceCandidate(ev.candidate);
 
 pc2.addEventListener('track', ev => {
-  console.log('[tc] ontrack called', ev);
   $('video').get(0).srcObject = ev.streams[0];
 }, { once: true });
 
-$('button').eq(0).on('click', call);
-$('button').eq(1).on('click', hangUp);
-
 drawCanvas();
+$('button').eq(0).on('click', call);
+
 function drawCanvas() {
   const canvas = $('canvas').get(0);
   const ctx = canvas.getContext('2d');
@@ -42,9 +40,4 @@ async function call() {
 
   await pc2.setLocalDescription(answer);
   await pc1.setRemoteDescription(answer);
-}
-
-function hangUp() {
-  pc1.close();
-  pc2.close();
 }

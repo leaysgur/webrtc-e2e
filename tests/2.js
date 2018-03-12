@@ -1,17 +1,10 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { Selector } from 'testcafe';
+import { getVideoColor } from './shared/util';
 
 fixture('SkyWay P2P:Media')
   .page('http://localhost:8080/2/');
 
 const callBtn = Selector('#call-btn');
-
-const getVideoColor = ClientFunction(selector => {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  ctx.drawImage(Util.$(selector), 0, 0);
-  return canvas.toDataURL();
-});
 
 test('should connect P2P w/ MediaConnection', async t => {
   // get black frame

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "testcafe -s ./screenshots --speed 0.8 chrome:headless,firefox:headless --app \"http-server ./pages -s\""
+    "test": "testcafe -s ./screenshots --speed 0.8 chrome:headless,firefox:headless --app \"http-server ./pages -s\"",
+    "_server": "http-server ./pages -s",
+    "_tc": "testcafe -s ./screenshots --speed 0.8"
   },
   "keywords": [],
   "author": "",

@@ -1,14 +1,46 @@
-import { Selector } from 'testcafe';
+import { Selector, ClientFunction } from 'testcafe';
 
 fixture('Vanilla RTCPeerConnection')
   .page('http://localhost:8080/1/');
 
+const callBtn = Selector('#tc-call');
+const hangupBtn = Selector('#tc-hangup');
+
+const getVideoColor = ClientFunction(() => {
+  const canvas = $('<canvas />').get(0);
+  const ctx = canvas.getContext('2d');
+
+  ctx.drawImage($('video').get(0), 0, 0);
+  return canvas.toDataURL();
+});
+
 test('should connect P2P', async t => {
-  const callBtn = Selector('#tc-call');
+  // get black frame
+  const c1 = await getVideoColor();
   // click to start call
   await t.click(callBtn);
 
-  // if connected, ontrack fired and logged
-  const { log } = await t.getBrowserConsoleMessages();
-  await t.expect(log.length).eql(1);
+  // XXX: need to wait for firefox:headless...
+  await t.wait(500);
+
+  // if connected, video is not black now
+  const c2 = await getVideoColor();
+  await t.expect(c1).notEql(c2);
+});
+
+test('should close P2P', async t => {
+  // click to start call
+  await t.click(callBtn);
+  // XXX: need to wait for firefox:headless...
+  await t.wait(500);
+
+  // get colored frame
+  const c1 = await getVideoColor();
+
+  // then hangup call
+  await t.click(hangupBtn);
+
+  // after hangup, video has black frame
+  const c2 = await getVideoColor();
+  await t.expect(c1).notEql(c2);
 });

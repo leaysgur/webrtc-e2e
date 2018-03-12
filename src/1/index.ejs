@@ -1,11 +1,19 @@
 <%- include('../_include/header', { id: 1 }) -%>
-<section>
-  <div>
-    <canvas></canvas>
-    <video autoplay></video>
+<section class="container center">
+  <div class="row mb4">
+    <div class="column one-half">
+      <h3>Local</h3>
+      <canvas id="local-canvas"></canvas>
+      <video id="local-video" autoplay></video>
+    </div>
+    <div class="column one-half">
+      <h3>Remote</h3>
+      <video id="remote-video" autoplay></video>
+      <canvas id="remote-canvas"></canvas>
+    </div>
   </div>
   <div>
-    <button id="tc-call">Call</button>
+    <button id="call-btn" class="button-primary">Call</button>
   </div>
 </section>
 <%- include('../_include/footer') -%>

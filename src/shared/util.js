@@ -1,4 +1,7 @@
 window.Util = {
+  $(selector) {
+    return document.querySelector(selector);
+  },
   renderCanvas(canvasEl) {
     const ctx = canvasEl.getContext('2d');
 

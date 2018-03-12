@@ -2,7 +2,7 @@
 import { Selector } from 'testcafe';
 
 fixture('Vanilla RTCPeerConnection')
-  .page('http://localhost:9998/1/');
+  .page('http://localhost:8080/1/');
 
 test('should connect P2P', async t => {
   const callBtn = Selector('#tc-call');

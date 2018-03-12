@@ -2,7 +2,7 @@
 import { Selector } from 'testcafe';
 
 fixture('SkyWay P2P')
-  .page('http://localhost:9998/2/');
+  .page('http://localhost:8080/2/');
 
 test('should connect P2P w/ MediaConnection', async t => {
   const callBtn = Selector('#tc-call');

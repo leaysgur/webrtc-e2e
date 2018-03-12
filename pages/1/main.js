@@ -8,29 +8,16 @@ pc2.addEventListener('track', ev => {
   $('video').get(0).srcObject = ev.streams[0];
 }, { once: true });
 
-drawCanvas();
+window.shared.renderCanvas($('canvas').get(0));
 $('button').eq(0).on('click', call);
-
-function drawCanvas() {
-  const canvas = $('canvas').get(0);
-  const ctx = canvas.getContext('2d');
-
-  setInterval(() => {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
-    ctx.fillRect(0, 0, canvas.width, canvas. height);
-  }, 500);
-}
 
 async function call() {
   const stream = $('canvas').get(0).captureStream();
   stream.getTracks().forEach(track => pc1.addTrack(track, stream));
 
   const offer = await pc1.createOffer({
-    offerToReceiveAudio: 1,
-    offerToReceiveVideo: 1
+    offerToReceiveAudio: true,
+    offerToReceiveVideo: true,
   });
 
   await pc1.setLocalDescription(offer);

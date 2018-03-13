@@ -12,9 +12,14 @@ echo "window.__SKYWAY_KEY__ = '<YOUR_KEY_HERE>';" >> ./src/shared/key.js
 npm run test
 # or run specified test
 npm run test ./tests/2.js
+
+# for dev
+npm run _server
+npm run _tc chrome ./tests/3.js
 ```
 
 ### Contents
 
 - 1: Vanilla P2P:Media
 - 2: SkyWay P2P:Media
+- 3: SkyWay P2P:Data

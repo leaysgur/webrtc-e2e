@@ -12,5 +12,13 @@ window.Util = {
       ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
       ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
     }, 500);
-  }
+  },
+  getVideoColor(selector) {
+    const video = document.querySelector(selector);
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0);
+    return canvas.toDataURL();
+  },
 };

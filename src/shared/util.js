@@ -13,7 +13,7 @@ window.Util = {
       ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
     }, 500);
   },
-  getVideoColor(selector) {
+  getVideoColorAsDataURL(selector) {
     const video = document.querySelector(selector);
 
     const canvas = document.createElement('canvas');

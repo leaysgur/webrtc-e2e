@@ -1,7 +1,8 @@
 import { Selector } from 'testcafe';
+import { serverUrl, sleepForFirefoxHeadless } from './shared/const';
 
 fixture('SkyWay P2P:Data')
-  .page('http://localhost:8080/3/');
+  .page(`${serverUrl}/3`);
 
 const localPre = Selector('#local-pre');
 const remotePre = Selector('#remote-pre');
@@ -13,6 +14,7 @@ test('should connect P2P w/ DataConnection', async t => {
 
   await t.expect(remotePre.textContent).eql('ping');
 
-  await t.wait(500);
+  // XXX: need to wait for firefox:headless...
+  await t.wait(sleepForFirefoxHeadless);
   await t.expect(localPre.textContent).eql('pong');
 });

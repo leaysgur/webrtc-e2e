@@ -23,3 +23,4 @@ npm run _tc chrome ./tests/3.js
 - 1: Vanilla P2P:Media
 - 2: SkyWay P2P:Media
 - 3: SkyWay P2P:Data
+- 4: SkyWay P2P:Media replaceStream

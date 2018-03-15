@@ -1,0 +1,23 @@
+<%- include('../_include/header', { id: 5 }) -%>
+<section class="container center">
+  <div class="row mb4">
+    <div class="column one-half">
+      <h3>Local</h3>
+      <div class="mb4">
+        <canvas id="local-canvas"></canvas>
+        <video id="local-video" autoplay></video>
+      </div>
+      <button id="local-join-btn" class="button-primary">Join</button>
+    </div>
+    <div class="column one-half">
+      <h3>Remote</h3>
+      <div class="mb4">
+        <video id="remote-video" autoplay></video>
+        <canvas id="remote-canvas"></canvas>
+      </div>
+      <button id="remote-join-btn" class="button-primary">Join</button>
+      <button id="remote-leave-btn" class="button">Leave</button>
+    </div>
+  </div>
+</section>
+<%- include('../_include/footer') -%>

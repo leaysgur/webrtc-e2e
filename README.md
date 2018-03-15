@@ -24,3 +24,5 @@ npm run _tc chrome ./tests/3.js
 - 2: SkyWay P2P:Media
 - 3: SkyWay P2P:Data
 - 4: SkyWay P2P:Media replaceStream
+- 5: SkyWay MeshRoom
+- 6: SkyWay SfuRoom

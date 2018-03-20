@@ -1,5 +1,8 @@
-video, canvas {
+video {
   background-color: #333;
+  min-width: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 pre {
   background-color: #333;

@@ -9,23 +9,25 @@ const peer2 = new Peer(randId, {
   },
 });
 
-peer2.on('call', conn => {
-  const stream2 = Util.makeMediaStreamByCanvas(Util.$('#remote-canvas'));
+peer2.on('call', async conn => {
+  const stream2 = await Util.getMediaStream();
+  Util.$('#remote-video').srcObject = stream2;
+
   conn.answer(stream2);
   conn.once('stream', stream => {
-    Util.$('#remote-video').srcObject = stream;
+    Util.$('#remote-disp').srcObject = stream;
   });
 });
 
-Util.renderCanvas(Util.$('#local-canvas'));
-Util.renderCanvas(Util.$('#remote-canvas'));
 Util.$('#call-btn').onclick = call;
 
-function call() {
-  const stream1 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas'));
+async function call() {
+  const stream1 = await Util.getMediaStream();
+  Util.$('#local-video').srcObject = stream1;
+
   const mc = peer1.call(randId, stream1);
 
   mc.once('stream', stream => {
-    Util.$('#local-video').srcObject = stream;
+    Util.$('#local-disp').srcObject = stream;
   });
 }

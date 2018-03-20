@@ -1,5 +1,5 @@
 import { Selector, ClientFunction } from 'testcafe';
-import { serverUrl, sleepForFirefoxHeadless } from './shared/const';
+import { serverUrl } from './shared/const';
 
 fixture('SkyWay P2P:Media')
   .page(`${serverUrl}/2`);
@@ -13,8 +13,6 @@ test('should connect P2P w/ MediaConnection', async t => {
 
   // click to start call
   await t.click(callBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if connected, video is not black now
   const l2 = await ClientFunction(() => Util.getVideoColorAsDataURL('#local-video'))();

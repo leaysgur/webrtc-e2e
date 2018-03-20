@@ -9,31 +9,32 @@ const peer2 = new Peer({
   },
 });
 
-Util.renderCanvas(Util.$('#local-canvas'));
-Util.renderCanvas(Util.$('#remote-canvas'));
 Util.$('#local-join-btn').onclick = localJoin;
 Util.$('#remote-join-btn').onclick = remoteJoin;
 Util.$('#remote-leave-btn').onclick = remoteLeave;
 
-function localJoin() {
-  const stream = Util.makeMediaStreamByCanvas(Util.$('#local-canvas'));
-  const sfuRoomL = peer1.joinRoom(randId, { stream, mode: 'sfu' });
+async function localJoin() {
+  const stream1 = await Util.getMediaStream();
+  Util.$('#local-video').srcObject = stream1;
+  const sfuRoomL = peer1.joinRoom(randId, { stream: stream1, mode: 'sfu' });
 
   sfuRoomL.on('stream', stream => {
-    Util.$('#local-video').srcObject = stream;
+    Util.$('#local-disp').srcObject = stream;
   });
   sfuRoomL.on('peerLeave', () => {
     console.log('remote peer leave');
+    Util.$('#local-disp').srcObject = null;
   });
 }
 
 let sfuRoomR;
-function remoteJoin() {
-  const stream = Util.makeMediaStreamByCanvas(Util.$('#remote-canvas'));
-  sfuRoomR = peer2.joinRoom(randId, { stream, mode: 'sfu' });
+async function remoteJoin() {
+  const stream2 = await Util.getMediaStream();
+  Util.$('#remote-video').srcObject = stream2;
+  sfuRoomR = peer2.joinRoom(randId, { stream: stream2, mode: 'sfu' });
 
   sfuRoomR.on('stream', stream => {
-    Util.$('#remote-video').srcObject = stream;
+    Util.$('#remote-disp').srcObject = stream;
   });
 }
 

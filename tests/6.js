@@ -1,5 +1,5 @@
 import { Selector, ClientFunction } from 'testcafe';
-import { serverUrl, sleepForFirefoxHeadless } from './shared/const';
+import { serverUrl } from './shared/const';
 
 fixture('SkyWay SfuRoom')
   .page(`${serverUrl}/6`);
@@ -16,8 +16,6 @@ test('should join room', async t => {
   // click to join room
   await t.click(localJoinBtn);
   await t.click(remoteJoinBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if connected, video is not black now
   const l2 = await ClientFunction(() => Util.getVideoColorAsDataURL('#local-video'))();
@@ -30,8 +28,6 @@ test('should leave', async t => {
   // click to start call
   await t.click(localJoinBtn);
   await t.click(remoteJoinBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // then leave
   await t.click(remoteLeaveBtn);
@@ -45,8 +41,6 @@ test('should rejoin after leave', async t => {
   // click to start call
   await t.click(localJoinBtn);
   await t.click(remoteJoinBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // then leave
   await t.click(remoteLeaveBtn);
@@ -55,8 +49,6 @@ test('should rejoin after leave', async t => {
   const r1 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();
 
   await t.click(remoteJoinBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if rejoined, video will re-render
   const l2 = await ClientFunction(() => Util.getVideoColorAsDataURL('#local-video'))();

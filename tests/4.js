@@ -1,5 +1,5 @@
 import { Selector, ClientFunction } from 'testcafe';
-import { serverUrl, sleepForFirefoxHeadless } from './shared/const';
+import { serverUrl } from './shared/const';
 
 fixture('SkyWay P2P:Media - replaceStream')
   .page(`${serverUrl}/4`);
@@ -13,8 +13,6 @@ test('should replace stream', async t => {
 
   // click to start call
   await t.click(callBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if connected, video is not black now
   const r2 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();
@@ -22,8 +20,6 @@ test('should replace stream', async t => {
 
   // click to replace stream
   await t.click(replaceBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if replaced, video has different color
   const r3 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();
@@ -32,8 +28,6 @@ test('should replace stream', async t => {
 
   // click to replace stream again
   await t.click(replaceBtn);
-  // XXX: need to wait for firefox:headless...
-  await t.wait(sleepForFirefoxHeadless);
 
   // if replaced, video has different color
   const r4 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();

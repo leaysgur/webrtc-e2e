@@ -10,7 +10,7 @@ const peer2 = new Peer(randId, {
 });
 
 peer2.on('call', conn => {
-  const stream2 = Util.$('#remote-canvas').captureStream();
+  const stream2 = Util.makeMediaStreamByCanvas(Util.$('#remote-canvas'));
   conn.answer(stream2);
   conn.once('stream', stream => {
     Util.$('#remote-video').srcObject = stream;
@@ -22,7 +22,7 @@ Util.renderCanvas(Util.$('#remote-canvas'));
 Util.$('#call-btn').onclick = call;
 
 function call() {
-  const stream1 = Util.$('#local-canvas').captureStream();
+  const stream1 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas'));
   const mc = peer1.call(randId, stream1);
 
   mc.once('stream', stream => {

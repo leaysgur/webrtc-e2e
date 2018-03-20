@@ -24,18 +24,18 @@ Util.$('#replace-btn').onclick = replace;
 
 let mc;
 function call() {
-  const stream1 = Util.$('#local-canvas-r').captureStream();
+  const stream1 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas-r'));
   mc = peer1.call(randId, stream1);
 }
 
 // replace to 2nd stream
 function replace() {
-  const stream2 = Util.$('#local-canvas-g').captureStream();
+  const stream2 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas-g'));
   mc.replaceStream(stream2);
 
   // override w/ 3rd stream
   Util.$('#replace-btn').onclick = function() {
-    const stream3 = Util.$('#local-canvas-b').captureStream();
+    const stream3 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas-b'));
     mc.replaceStream(stream3);
   };
 }

@@ -16,8 +16,8 @@ Util.renderCanvas(Util.$('#remote-canvas'));
 Util.$('#call-btn').onclick = call;
 
 async function call() {
-  const stream1 = Util.$('#local-canvas').captureStream();
-  const stream2 = Util.$('#remote-canvas').captureStream();
+  const stream1 = Util.makeMediaStreamByCanvas(Util.$('#local-canvas'));
+  const stream2 = Util.makeMediaStreamByCanvas(Util.$('#remote-canvas'));
   stream1.getTracks().forEach(track => pc1.addTrack(track, stream1));
   stream2.getTracks().forEach(track => pc2.addTrack(track, stream2));
 

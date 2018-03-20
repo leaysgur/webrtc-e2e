@@ -16,7 +16,7 @@ Util.$('#remote-join-btn').onclick = remoteJoin;
 Util.$('#remote-leave-btn').onclick = remoteLeave;
 
 function localJoin() {
-  const stream = Util.$('#local-canvas').captureStream();
+  const stream = Util.makeMediaStreamByCanvas(Util.$('#local-canvas'));
   const meshRoomL = peer1.joinRoom(randId, { stream });
 
   meshRoomL.on('stream', stream => {
@@ -29,7 +29,7 @@ function localJoin() {
 
 let meshRoomR;
 function remoteJoin() {
-  const stream = Util.$('#remote-canvas').captureStream();
+  const stream = Util.makeMediaStreamByCanvas(Util.$('#remote-canvas'));
   meshRoomR = peer2.joinRoom(randId, { stream });
 
   meshRoomR.on('stream', stream => {

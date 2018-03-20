@@ -1,26 +1,52 @@
+const fs = require('fs');
 const createTestCafe = require('testcafe');
 
-(async function main() {
+/**
+ * Set default options for TestCafe
+ * --------------------------------------
+ */
+const src = fs.readdirSync('./tests')
+  .filter(file => /.js$/.test(file))
+  .map(file => `./tests/${file}`);
+
+const browsers = [
+  // 'chrome --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
+  'chrome:headless --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
+  // 'firefox',
+  'firefox:headless',
+];
+
+const speed = 0.4;
+const app = null;
+
+const argv = require('yargs')
+  .default('src', src)
+  .default('browsers', browsers)
+  .default('speed', speed)
+  .default('app', app)
+  .argv;
+
+
+/**
+ * Run tests
+ * --------------------------------------
+ */
+(async function run() {
   const testcafe = await createTestCafe('localhost', 1337, 1338);
 
   const runner = testcafe
     .createRunner()
-    .src([
-      './tests/1.js',
-    ])
-    .browsers([
-      // 'chrome --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
-      'chrome:headless --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
-      // 'firefox',
-      // 'firefox:headless',
-    ]);
+    .src(argv.src)
+    .browsers(argv.browsers);
 
-  // console.log('launching test page server...');
-  // await runner.startApp('harp server --port 8080 ./src', 2000);
+  if (argv.app) {
+    console.log('launching test page server...');
+    await runner.startApp(argv.app, 2000);
+  }
 
   await runner
     .run({
-      speed: 0.4,
+      speed: argv.speed,
     })
     .catch(err => {
       console.error(err);

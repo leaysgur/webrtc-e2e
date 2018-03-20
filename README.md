@@ -11,11 +11,11 @@ echo "window.__SKYWAY_KEY__ = '<YOUR_KEY_HERE>';" >> ./src/shared/key.js
 # then run all tests
 npm run test
 # or run specified test
-npm run test ./tests/2.js
+npm run test -- --src ./tests/2.js
 
 # for dev
 npm run _server
-npm run _tc chrome ./tests/3.js
+npm run _tc -- --src ./tests/1.js --browsers firefox
 ```
 
 ### Contents

@@ -44,7 +44,7 @@ const argv = require('yargs')
     await runner.startApp(argv.app, 2000);
   }
 
-  await runner
+  const failed = await runner
     .run({
       speed: argv.speed,
     })
@@ -54,4 +54,5 @@ const argv = require('yargs')
     });
 
   await testcafe.close();
+  process.exit(failed ? 1 : 0);
 }());

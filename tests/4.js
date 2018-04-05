@@ -23,7 +23,6 @@ test('should replace stream', async t => {
 
   // if replaced, video has different color
   const r3 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();
-  await t.expect(r1).notEql(r3);
   await t.expect(r2).notEql(r3);
 
   // click to replace stream again
@@ -31,7 +30,5 @@ test('should replace stream', async t => {
 
   // if replaced, video has different color
   const r4 = await ClientFunction(() => Util.getVideoColorAsDataURL('#remote-video'))();
-  await t.expect(r1).notEql(r4);
-  await t.expect(r2).notEql(r4);
   await t.expect(r3).notEql(r4);
 });

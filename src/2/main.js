@@ -14,7 +14,7 @@ peer2.on('call', async conn => {
   Util.$('#remote-video').srcObject = stream2;
 
   conn.answer(stream2);
-  conn.on('stream', stream => {
+  conn.once('stream', stream => {
     Util.$('#remote-disp').srcObject = stream;
   });
 });

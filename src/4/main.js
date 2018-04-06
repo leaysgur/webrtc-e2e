@@ -11,7 +11,7 @@ const peer2 = new Peer(randId, {
 
 peer2.on('call', conn => {
   conn.answer();
-  conn.on('stream', stream => {
+  conn.once('stream', stream => {
     Util.$('#remote-video').srcObject = stream;
   });
 });

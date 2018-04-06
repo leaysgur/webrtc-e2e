@@ -10,8 +10,8 @@ const src = fs.readdirSync('./tests')
   .map(file => `./tests/${file}`);
 
 const browsers = [
-  // 'chrome --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
-  'chrome:headless --use-fake-device-for-media-stream --use-fake-ui-for-media-stream',
+  // 'chrome --use-fake-device-for-media-stream --use-fake-ui-for-media-stream --no-sandbox',
+  'chrome:headless --use-fake-device-for-media-stream --use-fake-ui-for-media-stream --no-sandbox',
   // 'firefox',
   'firefox:headless',
 ];
